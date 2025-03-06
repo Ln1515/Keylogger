@@ -1,2 +1,2 @@
 # newlogger
-A simple keylogger in C
+A keylogger in C built for windows 

