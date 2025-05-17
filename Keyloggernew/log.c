@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define visible    //hidden/visible
+#define hidden    //hidden/visible
 
 const char* keyname[] = {   //establish keynames
     [VK_BACK] = "[BACKSPACE]",
