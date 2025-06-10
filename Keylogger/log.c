@@ -1,3 +1,5 @@
+//need to add ability to send file to server
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
